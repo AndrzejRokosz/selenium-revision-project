@@ -4,6 +4,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class BaseWebElementSelectors {
 	static WebDriver driver;
@@ -24,4 +25,13 @@ public class BaseWebElementSelectors {
 		}
 	}
 
+	public static void checkPageTitleAndStopTestIfWrong(String title) {
+		boolean checkStatus = driver.getTitle().equals(title);
+		assertTrue("Tytul strony jest nieprawidlowy", checkStatus);
+	}
+	
+	public static WebElement findInputByName(String name) {
+		return driver.findElement(By.name(name));
+	}
+	
 }
