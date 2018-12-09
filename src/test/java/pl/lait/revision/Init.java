@@ -39,5 +39,21 @@ public class Init {
 			e.printStackTrace();
 		}
 	}
+	
+	public static void printScr(WebDriver driver, String folderName, String testName) {
+
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		Long milis = timestamp.getTime();
+
+		WebDriver driver_tmp = new Augmenter().augment(driver);
+		File srcFile = ((TakesScreenshot) driver_tmp).getScreenshotAs(OutputType.FILE);
+
+		try {
+			FileUtils.copyFile(srcFile, new File("target/"+ folderName +"/"+ testName +"-" + milis + ".png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 
 }
